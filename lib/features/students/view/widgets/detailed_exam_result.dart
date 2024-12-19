@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:project_badriyya/features/students/controller/mark_controller.dart';
 
-class DetailedExamResult extends StatelessWidget {
+class DetailedExamResult extends ConsumerWidget {
   const DetailedExamResult({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final markController = ref.read(markControllerProvider);
+
     return FutureBuilder(
-        future: Future(
-          () {},
-        ),
+        future: markController.getResult(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            final data = snapshot.data;
             return AlertDialog(
               backgroundColor: Colors.transparent,
               contentPadding: const EdgeInsets.all(0),
@@ -78,8 +81,9 @@ class DetailedExamResult extends StatelessWidget {
                         SizedBox(
                           height: 300, // Set a fixed height for the ListView
                           child: ListView.builder(
-                            itemCount: 6,
+                            itemCount: data!.length,
                             itemBuilder: (context, index) {
+                              final item = data[index];
                               return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),
@@ -88,15 +92,15 @@ class DetailedExamResult extends StatelessWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      'Subject ${index + 1}',
+                                      item!.subjectName,
                                       style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                       ),
                                     ),
-                                    const Text(
-                                      '100',
-                                      style: TextStyle(
+                                    Text(
+                                      item.mark.toString(),
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                       ),
