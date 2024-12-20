@@ -23,6 +23,10 @@ class Loginpage extends HookConsumerWidget {
       ref.read(authControllerProvider.notifier).login(email, password);
     }
 
+    void onlog() {
+      ref.read(authControllerProvider.notifier).logout();
+    }
+
     // void onlog() {
     //   final email = emailController.text;
     //   final password = passwordController.text;
@@ -153,25 +157,25 @@ class Loginpage extends HookConsumerWidget {
                 const SizedBox(
                   width: 24,
                 ),
-                // InkWell(
-                //   onTap: onlog,
-                //   child: Container(
-                //     height: 60,
-                //     width: 144,
-                //     decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(5),
-                //         border: Border.all(color: Colors.white, width: 2)),
-                //     child: const Center(
-                //       child: Text(
-                //         'log',
-                //         style: TextStyle(
-                //             fontSize: 24,
-                //             fontFamily: 'Nunito',
-                //             color: Colors.white),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                InkWell(
+                  onTap: onlog,
+                  child: Container(
+                    height: 60,
+                    width: 144,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white, width: 2)),
+                    child: const Center(
+                      child: Text(
+                        'log',
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontFamily: 'Nunito',
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             const Expanded(flex: 1, child: SizedBox())
