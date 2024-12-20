@@ -19,19 +19,22 @@ class ExamPage extends ConsumerWidget {
             return ListView.builder(
                 itemCount: exams.exams.length,
                 itemBuilder: (context, index) {
+                  final data = exams.exams;
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () => showExamResults(context),
+                      onTap: () => showExamResults(context, data[index].name),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: data[index].isCompleted
+                                ? const Color.fromARGB(120, 255, 187, 0)
+                                : const Color.fromARGB(178, 47, 128, 237),
                             borderRadius: BorderRadius.circular(20)),
                         height: 58,
                         width: 363,
                         child: Center(
                             child: Text(
-                          exams.exams[index],
+                          data[index].name,
                           style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w500),
                         )),
@@ -46,11 +49,13 @@ class ExamPage extends ConsumerWidget {
   }
 }
 
-void showExamResults(BuildContext context) {
+void showExamResults(BuildContext context, examId) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return const DetailedExamResult();
+      return DetailedExamResult(
+        examId: examId,
+      );
     },
   );
 }

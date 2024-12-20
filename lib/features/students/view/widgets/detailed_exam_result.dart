@@ -3,14 +3,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_badriyya/features/students/controller/mark_controller.dart';
 
 class DetailedExamResult extends ConsumerWidget {
-  const DetailedExamResult({super.key});
+  final String examId;
+  const DetailedExamResult({super.key, required this.examId});
 
   @override
   Widget build(BuildContext context, ref) {
     final markController = ref.read(markControllerProvider);
 
     return FutureBuilder(
-        future: markController.getResult(),
+        future: markController.getResult(examId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final data = snapshot.data;
@@ -98,16 +99,16 @@ class DetailedExamResult extends ConsumerWidget {
                                         color: Colors.black87,
                                       ),
                                     ),
-                                    Text(
-                                      item.mark.toString(),
-                                      style: const TextStyle(
+                                    const Text(
+                                      '100',
+                                      style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                       ),
                                     ),
-                                    const Text(
-                                      '98',
-                                      style: TextStyle(
+                                    Text(
+                                      item.mark.toString(),
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                       ),

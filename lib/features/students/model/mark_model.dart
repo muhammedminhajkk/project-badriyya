@@ -12,17 +12,17 @@ class ExamResult {
 
   factory ExamResult.fromJson(Map<String, dynamic> json) {
     return ExamResult(
-        subjectName: json['ExamId'],
-        className: json['ClassId'],
-        studentName: json['StudentId'],
+        subjectName: json['subjectId'],
+        className: json['classId'],
+        studentName: json['studentId'],
         mark: json['mark']);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'ExamId': subjectName,
-      'ClassId': className,
-      'StudentId': studentName,
+      'subjectId': subjectName,
+      'classId': className,
+      'studentId': studentName,
       'mark': mark
     };
   }
