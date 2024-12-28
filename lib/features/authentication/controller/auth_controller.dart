@@ -4,6 +4,7 @@ import 'package:project_badriyya/features/authentication/services/auth_services.
 import 'package:project_badriyya/features/authentication/services/teacher_service.dart';
 import 'package:project_badriyya/features/authentication/view/pages/login_page.dart';
 import 'package:project_badriyya/features/students/view/pages/home_page_for_students.dart';
+import 'package:project_badriyya/features/teachers/view/pages/home_page_for_teachers.dart';
 import 'package:project_badriyya/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -13,7 +14,7 @@ part 'auth_controller.g.dart';
 @Riverpod(keepAlive: true)
 class AuthController extends _$AuthController {
   final _authServices = AuthServices();
-  final teacherService = TeacherService();
+  final teacherService = TeachersList();
   @override
   void build() async {
     List<String> teacherNames = await teacherService.getAllTeacherNames();
@@ -26,7 +27,8 @@ class AuthController extends _$AuthController {
           MyApp.navigatorKey.currentContext!.go(Loginpage.routePath);
         } else {
           if (teacherNames.contains(session.user.email)) {
-            print('yess');
+            MyApp.navigatorKey.currentContext!
+                .go(HomePageForTeachers.routePath);
           } else {
             MyApp.navigatorKey.currentContext!
                 .go(HomePageForStudents.routePath);

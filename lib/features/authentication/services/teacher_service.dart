@@ -1,7 +1,7 @@
 import 'package:project_badriyya/features/authentication/model/teacher_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class TeacherService {
+class TeachersList {
   Future<List<String>> getAllTeacherNames() async {
     try {
       // Fetch data from the 'teachers' table
