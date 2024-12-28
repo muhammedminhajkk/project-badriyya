@@ -16,7 +16,7 @@ class ClassDetailsController {
       final students = await _classServices.getStudents(className);
       return students;
     } catch (e) {
-      print('Error fetching students: $e');
+      // print('Error fetching students: $e');
       SnackBarUtils.showMessage("Failed to fetch students: ${e.toString()}");
       rethrow;
     }
