@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import 'package:project_badriyya/features/teachers/controller/teacher_controller.dart';
 import 'package:project_badriyya/features/teachers/view/pages/class_details.dart';
@@ -12,6 +13,8 @@ class HomePageForTeachers extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final teacherController = ref.read(teacherControllerProvider);
+    DateTime today = DateTime.now();
+    String formattedDate = DateFormat('MMMM d, yyyy').format(today);
     return Scaffold(
       body: FutureBuilder(
           future: teacherController.getTeacher(),
@@ -52,6 +55,11 @@ class HomePageForTeachers extends ConsumerWidget {
                             children: [
                               Text(
                                 teacher.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 24),
+                              ),
+                              Text(
+                                formattedDate,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 24),
                               ),

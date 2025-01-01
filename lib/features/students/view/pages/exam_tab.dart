@@ -5,7 +5,9 @@ import 'package:project_badriyya/features/students/view/widgets/detailed_exam_re
 
 class ExamPage extends ConsumerWidget {
   final String studenClass;
-  const ExamPage({super.key, required this.studenClass});
+  final String studentName;
+  const ExamPage(
+      {super.key, required this.studenClass, required this.studentName});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -23,7 +25,8 @@ class ExamPage extends ConsumerWidget {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () => showExamResults(context, data[index].name),
+                      onTap: () => showExamResults(
+                          context, data[index].name, studenClass, studentName),
                       child: Container(
                         decoration: BoxDecoration(
                             color: data[index].isCompleted
@@ -49,11 +52,13 @@ class ExamPage extends ConsumerWidget {
   }
 }
 
-void showExamResults(BuildContext context, examId) {
+void showExamResults(BuildContext context, examId, studentClass, studentName) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return DetailedExamResult(
+        studentName: studentName,
+        studentClass: studentClass,
         examId: examId,
       );
     },

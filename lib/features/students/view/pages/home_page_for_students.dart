@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:project_badriyya/features/students/controller/student_controller.dart';
-import 'package:project_badriyya/features/students/view/pages/account_tab.dart';
 import 'package:project_badriyya/features/students/view/pages/attendance_tab.dart';
 import 'package:project_badriyya/features/students/view/pages/exam_tab.dart';
 
@@ -25,7 +24,7 @@ class HomePageForStudents extends ConsumerWidget {
             } else {
               studentclass = student.className;
               return DefaultTabController(
-                length: 3,
+                length: 2,
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(47, 128, 237, 255),
@@ -101,10 +100,10 @@ class HomePageForStudents extends ConsumerWidget {
                                   child: Container(
                                       padding: const EdgeInsets.only(top: 20),
                                       child: const Text('Exam'))),
-                              Tab(
-                                  child: Container(
-                                      padding: const EdgeInsets.only(top: 20),
-                                      child: const Text('Account'))),
+                              // Tab(
+                              //     child: Container(
+                              //         padding: const EdgeInsets.only(top: 20),
+                              //         child: const Text('Account'))),
                             ]),
                       ),
                       Expanded(
@@ -113,8 +112,9 @@ class HomePageForStudents extends ConsumerWidget {
                             const CalendarPage(),
                             ExamPage(
                               studenClass: studentclass,
+                              studentName: student.name,
                             ),
-                            const AccountPage()
+                            // const AccountPage()
                           ],
                         ),
                       ),

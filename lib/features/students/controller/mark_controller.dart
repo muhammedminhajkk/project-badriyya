@@ -10,10 +10,11 @@ final markControllerProvider = Provider<MarkController>((ref) {
 class MarkController {
   final _markServices = MarkServices();
 
-  Future<List<ExamResult?>> getResult(examName) async {
+  Future<List<ExamResult?>> getResult(
+      examName, studentname, studentclass) async {
     try {
       final examResultData =
-          await _markServices.getMark('minhaj@gmail.com', 'S3', examName);
+          await _markServices.getMark(studentname, studentclass, examName);
       return examResultData;
     } catch (e) {
       SnackBarUtils.showMessage("Failed to fetch markdd: ${e.toString()}");

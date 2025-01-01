@@ -17,7 +17,7 @@ class Loginpage extends HookConsumerWidget {
 
     /// Callback to execute when the login button clicked
     void onLoginButtonClicked() {
-      final email = emailController.text;
+      final email = "${emailController.text}@gmail.com";
       final password = passwordController.text;
 
       ref.read(authControllerProvider.notifier).login(email, password);

@@ -51,9 +51,9 @@ class AuthController extends _$AuthController {
   Future<void> logout() async {
     try {
       await Supabase.instance.client.auth.signOut();
-      print('User logged out successfully.');
+      // print('User logged out successfully.');
     } catch (e) {
-      print('Error during logout: $e');
+      // print('Error during logout: $e');
     }
   }
 }

@@ -4,14 +4,20 @@ import 'package:project_badriyya/features/students/controller/mark_controller.da
 
 class DetailedExamResult extends ConsumerWidget {
   final String examId;
-  const DetailedExamResult({super.key, required this.examId});
+  final String studentName;
+  final String studentClass;
+  const DetailedExamResult(
+      {super.key,
+      required this.examId,
+      required this.studentClass,
+      required this.studentName});
 
   @override
   Widget build(BuildContext context, ref) {
     final markController = ref.read(markControllerProvider);
 
     return FutureBuilder(
-        future: markController.getResult(examId),
+        future: markController.getResult(examId, studentName, studentClass),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final data = snapshot.data;
@@ -57,14 +63,6 @@ class DetailedExamResult extends ConsumerWidget {
                               ),
                             ),
                             Text(
-                              'TM',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            Text(
                               'OM',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -93,15 +91,8 @@ class DetailedExamResult extends ConsumerWidget {
                                       MainAxisAlignment.spaceAround,
                                   children: [
                                     Text(
-                                      item!.subjectName,
+                                      item!.name,
                                       style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                    const Text(
-                                      '100',
-                                      style: TextStyle(
                                         fontSize: 16,
                                         color: Colors.black87,
                                       ),

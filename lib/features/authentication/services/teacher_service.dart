@@ -15,7 +15,7 @@ class TeachersList {
       // Return only the list of names
       return teacherList.map((teacher) => teacher.name).toList();
     } catch (e) {
-      print('Error fetching teachers: $e');
+      // print('Error fetching teachers: $e');
       return [];
     }
   }
